@@ -29,73 +29,65 @@
        font-size: 1.5rem;
        color: #333;
      }
-+    .menu-toggle {
-+      position: fixed;
-+      top: 10px;
-+      left: 10px;
-+      cursor: pointer;
-+      z-index: 1000;
-+    }
-+    .menu-toggle span {
-+      display: block;
-+      width: 30px;
-+      height: 4px;
-+      background: #333;
-+      margin: 5px 0;
-+    }
-+    .menu {
-+      display: none;
-+      position: fixed;
-+      top: 0;
-+      left: 0;
-+      width: 200px;
-+      height: 100%;
-+      background: #fff;
-+      padding-top: 60px;
-+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-+    }
-+    .menu.open {
-+      display: block;
-+    }
-+    .menu a {
-+      display: block;
-+      padding: 10px 20px;
-+      color: #333;
-+      text-decoration: none;
-+    }
+     .menu-toggle {
+       position: fixed;
+       top: 10px;
+       left: 10px;
+       cursor: pointer;
+       z-index: 1000;
+     }
+     .menu-toggle span {
+       display: block;
+       width: 30px;
+       height: 4px;
+       background: #333;
+       margin: 5px 0;
+     }
+     .menu {
+       display: none;
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 200px;
+       height: 100%;
+       background: #fff;
+       padding-top: 60px;
+       box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+     }
+     .menu.open {
+       display: block;
+     }
+     .menu a {
+       display: block;
+       padding: 10px 20px;
+       color: #333;
+       text-decoration: none;
+     }
    </style>
--</head>
--<body>
--  <img src="ectropa-brand.png" alt="Company Logo" class="logo" />
--  <div class="tagline">
--   2011<br>
-+  </head>
-+  <body>
-+    <div class="menu-toggle">
-+      <span></span>
-+      <span></span>
-+      <span></span>
-+    </div>
-+    <nav class="menu">
-+      <a href="#">option1</a>
-+      <a href="#">option2</a>
-+      <a href="#">option3</a>
-+      <a href="#">option4</a>
-+      <a href="#">option5</a>
-+    </nav>
-+    <img src="ectropa-brand.png" alt="Company Logo" class="logo" />
-+    <div class="tagline">
-+      2011<br>
- 
--  </div>
--</body>
-+    </div>
-+    <script>
-+      const menuToggle = document.querySelector('.menu-toggle');
-+      const menu = document.querySelector('.menu');
-+      menuToggle.addEventListener('click', () => {
-+        menu.classList.toggle('open');
-+      });
-+    </script>
-+  </body>
+   </head>
+   <body>
+     <div class="menu-toggle">
+       <span></span>
+       <span></span>
+       <span></span>
+     </div>
+     <nav class="menu">
+       <a href="#">option1</a>
+       <a href="#">option2</a>
+       <a href="#">option3</a>
+       <a href="#">option4</a>
+       <a href="#">option5</a>
+     </nav>
+     <img src="ectropa-brand.png" alt="Company Logo" class="logo" />
+     <div class="tagline">
+       2011<br>
+     </div>
+     <script>
+       const menuToggle = document.querySelector('.menu-toggle');
+       const menu = document.querySelector('.menu');
+       menuToggle.addEventListener('click', () => {
+         menu.classList.toggle('open');
+       });
+     </script>
+   </body>
  </html>
