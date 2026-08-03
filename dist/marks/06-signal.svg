@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none">
+  <title>06 Signal</title>
+  <path d="M6 6h40v40H6z" stroke="#111" stroke-width="1.15"/>
+  <path d="m13.5 20.5 5.5 5.5-5.5 5.5M21.5 18l8 8-8 8M31 15.5 41.5 26 31 36.5" stroke="#111" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

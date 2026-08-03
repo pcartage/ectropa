@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none">
+  <title>02 Air</title>
+  <path d="M5.5 5.5h41v41h-41z" stroke="#111" stroke-width="1.1"/>
+  <path d="m13.5 21 5 5-5 5M21.5 18.5l7.5 7.5-7.5 7.5M31 16l10 10-10 10" stroke="#111" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none">
+  <title>01 Reference</title>
+  <path d="M7 7h38v38H7z" stroke="#111" stroke-width="1.25"/>
+  <path d="m13 20 6 6-6 6M21 17l9 9-9 9M31 14l12 12-12 12" stroke="#111" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>
