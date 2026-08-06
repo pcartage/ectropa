@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 594 120" role="img" aria-labelledby="title desc">
+  <title id="title">Ectropa — Officina wordmark</title>
+  <desc id="desc">A custom rounded industrial wordmark spelling Ectropa.</desc>
+  <g fill="#b8642d">
+    <!-- E -->
+    <path d="M8 18Q8 10 16 10h72q8 0 8 8v17H38v13h47v23H38v14h58v17q0 8-8 8H16q-8 0-8-8z"/>
+    <rect x="19" y="23" width="8" height="74" rx="4" fill="#ca7a37"/>
+
+    <!-- c -->
+    <path d="M109 48q0-25 25-25h42q8 0 8 8v15h-42q-7 0-7 7v27q0 7 7 7h42v15q0 8-8 8h-42q-25 0-25-25z"/>
+    <path d="M121 53q0-17 16-17h8v10h-4q-8 0-8 8v25q0 8 8 8h4v10h-8q-16 0-16-17z" fill="#ca7a37"/>
+
+    <!-- t -->
+    <path d="M203 9h25v16h25v21h-25v34q0 7 7 7h18v23h-26q-24 0-24-24V46h-13V25h13z"/>
+    <rect x="211" y="18" width="8" height="75" rx="4" fill="#ca7a37"/>
+
+    <!-- r -->
+    <path d="M264 24h25v10q9-11 26-11h10q8 0 8 8v18h-15q-27 0-27 25v36h-27z"/>
+    <rect x="274" y="36" width="8" height="61" rx="4" fill="#ca7a37"/>
+
+    <!-- o -->
+    <path fill-rule="evenodd" d="M337 49q0-26 26-26h33q26 0 26 26v35q0 26-26 26h-33q-26 0-26-26zm28 3v29q0 7 7 7h15q7 0 7-7V52q0-7-7-7h-15q-7 0-7 7z"/>
+    <path d="M351 53q0-17 17-17h6v9h-2q-8 0-8 8v28q0 8 8 8h2v9h-6q-17 0-17-17z" fill="#ca7a37"/>
+
+    <!-- p -->
+    <path fill-rule="evenodd" d="M434 24h26v8q8-9 22-9h14q25 0 25 25v29q0 25-25 25h-35v18h-27zm27 23v33h25q7 0 7-7V54q0-7-7-7z"/>
+    <rect x="444" y="36" width="8" height="72" rx="4" fill="#ca7a37"/>
+
+    <!-- a -->
+    <path fill-rule="evenodd" d="M531 31q0-8 8-8h23q24 0 24 24v63h-25v-8q-8 9-22 9h-4q-20 0-20-21V75q0-20 21-20h23v-4q0-7-7-7h-21zm11 47v8q0 6 6 6h4q7 0 7-7V72h-10q-7 0-7 6z"/>
+    <rect x="570" y="36" width="7" height="61" rx="3.5" fill="#ca7a37"/>
+  </g>
+</svg>
