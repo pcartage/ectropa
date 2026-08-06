@@ -19,17 +19,17 @@ export const siteContent = {
   },
   holdings: {
     eyebrow: "Areas of focus",
-    heading: "A small number of interests, structured with care.",
+    heading: "A small number of interests",
     domains: [
         {
         number: "01",
-        title: "Personal",
+        title: "Active projects",
         copy: "Selective commitments where the people, proposition, and path to execution can be followed closely.",
       },
          {
         number: "02",
-        title: "Family",
-        copy: "Passive investments and family matters",
+        title: "Passive participation",
+        copy: "Family investments and matters.",
       },
     ],
   },
