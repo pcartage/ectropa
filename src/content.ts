@@ -13,34 +13,29 @@ export const siteContent = {
     eyebrow: "A way of holding",
     heading: "The right things are often the quiet ones.",
     paragraphs: [
-      "We favor decisions that can withstand repetition: much of stewardship is doing the useful, unremarkable work—consistently and with purpose.",
-      "Before anything moves, we ask who is across the table, whether trust can be earned, and whether the people involved can carry the proposal through. A compelling idea is not enough without clear control.",
+      "We favor decisions that can stand the test of time. Stewardship often lies in doing the useful, unremarkable work—consistently, deliberately, and with purpose.",
+      "Before anything moves, we consider who is across the table, whether trust can be earned, and whether those involved have the judgment and capacity to follow through. A compelling idea is not enough without clear ownership and disciplined execution.",
     ],
   },
   holdings: {
     eyebrow: "Areas of focus",
     heading: "A small number of interests, structured with care.",
     domains: [
-      {
+        {
         number: "01",
-        title: "Family investments",
-        copy: "Long-term positions held on behalf of family",
-      },
-      {
-        number: "02",
-        title: "Personal investments",
+        title: "Personal",
         copy: "Selective commitments where the people, proposition, and path to execution can be followed closely.",
       },
-      {
-        number: "03",
-        title: "Controlled opportunities",
-        copy: "Well-considered opportunities with a clear controlling vehicle and defined decision rights that protect alignment over time.",
+         {
+        number: "02",
+        title: "Family",
+        copy: "Passive investments and family matters",
       },
     ],
   },
   provenance: {
     eyebrow: "A note",
-    copy: "We begin with the counterparty: how trust is built, whether the capability matches the proposal, and who will still be accountable when circumstances change. The aim is to get the terms right, treat people right, and then do what we said we would do.",
+    copy: "We begin with principles. How trust is built, whether capability matches the proposal, and who has the commitment to carry it forward over time. The aim is simple: set the terms carefully, treat people well, and do what we say we will do.",
   },
   contact: {
     heading: "Some conversations are better begun quietly.",

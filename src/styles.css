@@ -171,6 +171,23 @@ h2 { margin: 0; max-width: 1050px; font: 400 clamp(3rem, 6.6vw, 7rem)/.98 var(--
 .mark-scale { position: absolute; right: 1.3rem; bottom: 1.2rem; display: flex; align-items: center; gap: .6rem; color: #666; }
 .mark-scale img { width: 32px; height: 32px; }
 .marks-footer { display: flex; justify-content: space-between; padding-top: 2rem; margin-top: 5rem; }
+.lettermarks-page { --terra: #b8642d; }
+.lettermark-stage { background: #f8f5ee; }
+.lettermark-stage .mark-large { width: 184px; height: 184px; }
+.lettermark-stage img { filter: invert(43%) sepia(67%) saturate(873%) hue-rotate(341deg) brightness(84%) contrast(85%); }
+.officina-wordmark { margin-bottom: 5rem; border: 1px solid #aaa8a2; background: #f8f5ee; }
+.officina-wordmark-meta { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding: 1.2rem; border-bottom: 1px solid #c9c6bf; }
+.officina-wordmark-meta > span { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
+.officina-wordmark-meta h2 { margin: 0 0 .25rem; font: 400 1rem/1.2 Inter, sans-serif; letter-spacing: 0; }
+.officina-wordmark-meta p { margin: 0; color: #666; font-size: .68rem; letter-spacing: .04em; }
+.officina-wordmark-stage { display: grid; place-items: center; min-height: 360px; padding: 5rem clamp(2rem, 8vw, 9rem); }
+.officina-wordmark-stage img { display: block; width: min(100%, 950px); height: auto; }
+.study-rationale { display: grid; grid-template-columns: 1fr 3fr; gap: 4rem; padding: 8rem 0 3rem; border-bottom: 1px solid #aaa8a2; }
+.study-rationale > p { margin: .4rem 0 0; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
+.study-rationale h2 { font-size: clamp(2.7rem, 5.2vw, 5.5rem); }
+.study-rationale div { grid-column: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.study-rationale div p { margin: 0; line-height: 1.6; color: #555; }
+.study-rationale strong { color: #111; font-weight: 600; }
 
 @media (max-width: 760px) {
   .marks-page { padding: 1rem; }
@@ -180,4 +197,8 @@ h2 { margin: 0; max-width: 1050px; font: 400 clamp(3rem, 6.6vw, 7rem)/.98 var(--
   .marks-grid { grid-template-columns: 1fr; }
   .mark-card { min-height: 370px; }
   .mark-large { width: 140px; height: 140px; }
+  .officina-wordmark-meta { grid-template-columns: 1fr; }
+  .officina-wordmark-stage { min-height: 240px; padding: 3rem 1.5rem; }
+  .study-rationale { grid-template-columns: 1fr; gap: 2rem; padding-top: 5rem; }
+  .study-rationale div { grid-column: 1; grid-template-columns: 1fr; }
 }
