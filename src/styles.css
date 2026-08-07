@@ -182,6 +182,13 @@ h2 { margin: 0; max-width: 1050px; font: 400 clamp(3rem, 6.6vw, 7rem)/.98 var(--
 .officina-wordmark-meta p { margin: 0; color: #666; font-size: .68rem; letter-spacing: .04em; }
 .officina-wordmark-stage { display: grid; place-items: center; min-height: 360px; padding: 5rem clamp(2rem, 8vw, 9rem); }
 .officina-wordmark-stage img { display: block; width: min(100%, 950px); height: auto; }
+.officina-lockup-meta { display: flex; justify-content: space-between; gap: 2rem; padding: 1rem 1.2rem; border-top: 1px solid #c9c6bf; border-bottom: 1px solid #c9c6bf; font-size: .68rem; letter-spacing: .08em; }
+.officina-lockup-meta span { text-transform: uppercase; letter-spacing: .12em; }
+.officina-lockup-meta p { margin: 0; color: #666; }
+.officina-lockup-stage { display: flex; align-items: center; justify-content: center; gap: clamp(1.5rem, 3.5vw, 3.5rem); min-height: 330px; padding: 5rem clamp(2rem, 7vw, 8rem); background: #b8642d; }
+.officina-lockup-word { display: block; width: min(72%, 760px); height: auto; filter: brightness(0) invert(1); }
+.officina-lockup-divider { width: 1px; height: clamp(3.5rem, 8vw, 6.5rem); background: rgba(255,255,255,.38); }
+.officina-lockup-mark { display: block; width: clamp(4.5rem, 10vw, 8rem); height: clamp(4.5rem, 10vw, 8rem); flex: none; filter: brightness(0) invert(1); }
 .study-rationale { display: grid; grid-template-columns: 1fr 3fr; gap: 4rem; padding: 8rem 0 3rem; border-bottom: 1px solid #aaa8a2; }
 .study-rationale > p { margin: .4rem 0 0; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
 .study-rationale h2 { font-size: clamp(2.7rem, 5.2vw, 5.5rem); }
@@ -199,6 +206,12 @@ h2 { margin: 0; max-width: 1050px; font: 400 clamp(3rem, 6.6vw, 7rem)/.98 var(--
   .mark-large { width: 140px; height: 140px; }
   .officina-wordmark-meta { grid-template-columns: 1fr; }
   .officina-wordmark-stage { min-height: 240px; padding: 3rem 1.5rem; }
+  .officina-lockup-meta { display: block; }
+  .officina-lockup-meta p { margin-top: .45rem; }
+  .officina-lockup-stage { min-height: 220px; gap: 1rem; padding: 3rem 1.2rem; }
+  .officina-lockup-word { width: calc(100% - 5.5rem); }
+  .officina-lockup-divider { height: 3rem; }
+  .officina-lockup-mark { width: 4rem; height: 4rem; }
   .study-rationale { grid-template-columns: 1fr; gap: 2rem; padding-top: 5rem; }
   .study-rationale div { grid-column: 1; grid-template-columns: 1fr; }
 }
