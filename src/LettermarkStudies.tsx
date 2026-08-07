@@ -37,6 +37,15 @@ export default function LettermarkStudies() {
         <div className="officina-wordmark-stage">
           <img src="/lettermarks/officina-wordmark.svg" alt="Ectropa set in the custom Officina lettering" />
         </div>
+        <div className="officina-lockup-meta">
+          <span>Combined lockup</span>
+          <p>Officina wordmark + current Ectropa mark</p>
+        </div>
+        <div className="officina-lockup-stage" aria-label="Ectropa Officina wordmark with the current Ectropa mark">
+          <img className="officina-lockup-word" src="/lettermarks/officina-wordmark.svg" alt="Ectropa" />
+          <span className="officina-lockup-divider" aria-hidden="true" />
+          <img className="officina-lockup-mark" src="/ectropa-mark.svg" alt="Ectropa mark" />
+        </div>
       </section>
 
       <section className="marks-grid" aria-label="Numbered Ectropa lettermark alternatives">

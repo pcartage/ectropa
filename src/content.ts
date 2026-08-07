@@ -23,13 +23,13 @@ export const siteContent = {
     domains: [
         {
         number: "01",
-        title: "Active projects",
-        copy: "Selective commitments where the people, proposition, and path to execution can be followed closely.",
+        title: "Active commitments",
+        copy: "High-touch projects, ventures, and investments where we closely drive execution.",
       },
          {
         number: "02",
-        title: "Passive participation",
-        copy: "Family investments and matters.",
+        title: "Passive allocations",
+        copy: "Low-touch wealth management, including family investments and broad market holdings.",
       },
     ],
   },
