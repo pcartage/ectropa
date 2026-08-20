@@ -8,5 +8,11 @@ export default defineConfig({
   build: {
     target: "es2022",
     cssMinify: "lightningcss",
+    rollupOptions: {
+      input: {
+        main: "index.html",
+        golf: "golf/index.html",
+      },
+    },
   },
 });
