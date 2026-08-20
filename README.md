@@ -1,6 +1,6 @@
 # Ectropa
 
-The public website for Ectropa, a private family holding company.
+The public website for Ectropa, an investment company.
 
 ## Editing content
 
