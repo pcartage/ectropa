@@ -51,9 +51,40 @@
   color: #333;
 }
 
+.golf-destacados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.15rem 2rem;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.golf-chip-label {
+  display: block;
+  font-size: .62rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.golf-chip-detail {
+  display: block;
+  margin-top: .22rem;
+  font-size: .95rem;
+}
+
+.golf-campo {
+  margin: 1.1rem 0 0;
+  max-width: 42rem;
+  font-size: .75rem;
+  letter-spacing: .02em;
+  color: #555;
+}
+
 .golf-board-wrap {
   overflow-x: auto;
-  padding: 0 2rem 3.5rem;
+  padding: 0 2rem 2.4rem;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -142,6 +173,24 @@
   color: var(--under);
 }
 
+.golf-player-btn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+  text-decoration-thickness: 1px;
+}
+
+.golf-player-btn[aria-expanded="true"] {
+  text-decoration-thickness: 2px;
+}
+
 .golf-jr {
   margin-left: .45rem;
   font-size: .62rem;
@@ -161,6 +210,114 @@
   color: #333;
 }
 
+.golf-tarjeta {
+  padding: 0 2rem 2.4rem;
+  max-width: 52rem;
+}
+
+.golf-tarjeta-kicker {
+  margin: 0;
+  font-size: .62rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.golf-tarjeta h2 {
+  margin: .35rem 0 0;
+  font: 400 1.35rem/1.15 var(--serif);
+  letter-spacing: -.02em;
+}
+
+.golf-tarjeta-date {
+  margin: .45rem 0 0;
+  font-size: .8rem;
+  color: #555;
+}
+
+.golf-card-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .9rem;
+  margin: .7rem 0 0;
+}
+
+.golf-card-tabs button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: .8rem;
+  color: #555;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: .16em;
+  text-decoration-thickness: 1px;
+}
+
+.golf-card-tabs button[aria-selected="true"] {
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+}
+
+.golf-cards {
+  display: grid;
+  gap: 1.15rem;
+  margin: 1.1rem 0 0;
+}
+
+.golf-card {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.golf-card th,
+.golf-card td {
+  padding: .32rem .28rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.golf-card thead th {
+  font-weight: 400;
+  font-size: .62rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ink);
+}
+
+.golf-card th[scope="row"] {
+  text-align: left;
+  padding-left: 0;
+  padding-right: .7rem;
+  font-weight: 400;
+  font-size: .62rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.golf-card tbody td,
+.golf-card tbody th {
+  border-bottom: 1px solid var(--line);
+}
+
+.golf-tarjeta-counts,
+.golf-sin-hoyos {
+  margin: .85rem 0 0;
+  font-size: .8rem;
+  color: #333;
+}
+
+.golf-tarjeta-total {
+  margin: .7rem 0 0;
+  font-size: 1.5rem;
+  letter-spacing: -.02em;
+}
+
 .golf-note {
   margin: 0;
   padding: 0 2rem 3.5rem;
@@ -175,7 +332,8 @@
   }
 
   .golf-board-wrap,
-  .golf-note {
+  .golf-note,
+  .golf-tarjeta {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
   }
