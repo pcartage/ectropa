@@ -1,0 +1,16 @@
+.golf-page .site-header {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.golf-page .golf-heading {
+  margin: 0;
+  max-width: 1050px;
+  font: 400 clamp(3rem, 6.6vw, 7rem)/.98 var(--serif);
+  letter-spacing: -.035em;
+}
+
+.golf-page .prose {
+  grid-template-columns: 1fr;
+  margin-top: 5rem;
+}
