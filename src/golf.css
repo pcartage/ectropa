@@ -1,16 +1,187 @@
-.golf-page .site-header {
-  opacity: 1;
-  pointer-events: auto;
+.golf-page {
+  --serif: Iowan Old Style, Georgia, "Times New Roman", serif;
+  --under: #b11a21;
+  --qualify: #1c3328;
+  min-height: 100svh;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--serif);
 }
 
-.golf-page .golf-heading {
+.golf-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.golf-masthead {
+  padding: 1.4rem 2rem 2.75rem;
+}
+
+.golf-masthead .wordmark {
   margin: 0;
-  max-width: 1050px;
-  font: 400 clamp(3rem, 6.6vw, 7rem)/.98 var(--serif);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.golf-masthead h1 {
+  margin: 4.25rem 0 0.45rem;
+  max-width: 18ch;
+  font: 400 clamp(2.15rem, 5.4vw, 3.9rem)/.98 var(--serif);
   letter-spacing: -.035em;
 }
 
-.golf-page .prose {
-  grid-template-columns: 1fr;
-  margin-top: 5rem;
+.golf-dek {
+  margin: 0;
+  font-size: .95rem;
+}
+
+.golf-rules {
+  margin: 1.15rem 0 0;
+  max-width: 42rem;
+  font-size: .8rem;
+  line-height: 1.45;
+  color: #333;
+}
+
+.golf-board-wrap {
+  overflow-x: auto;
+  padding: 0 2rem 3.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.golf-board {
+  width: max(100%, 920px);
+  border-collapse: collapse;
+  font-size: .92rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.golf-board th,
+.golf-board td {
+  padding: .58rem .7rem;
+  white-space: nowrap;
+  background: var(--paper);
+}
+
+.golf-board th {
+  font-weight: 400;
+  font-size: .62rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ink);
+}
+
+.golf-board td {
+  border-bottom: 1px solid var(--line);
+}
+
+.golf-board tbody tr:last-child td {
+  border-bottom: 1px solid var(--ink);
+}
+
+.golf-board .col-pos {
+  width: 3rem;
+  text-align: left;
+}
+
+.golf-board .col-player {
+  text-align: left;
+  min-width: 13.5rem;
+  padding-right: 1.2rem;
+}
+
+.golf-board .col-num,
+.golf-board .col-round {
+  text-align: right;
+}
+
+.golf-board .col-status {
+  text-align: left;
+  padding-left: 1.1rem;
+}
+
+.golf-board thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.golf-board th.col-pos,
+.golf-board td.col-pos {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.golf-board th.col-player,
+.golf-board td.col-player {
+  position: sticky;
+  left: 3rem;
+  z-index: 1;
+  box-shadow: 10px 0 10px -10px rgba(17, 17, 17, .18);
+}
+
+.golf-board thead th.col-pos,
+.golf-board thead th.col-player {
+  z-index: 3;
+}
+
+.golf-board tr.cut-after td {
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.golf-page .under {
+  color: var(--under);
+}
+
+.golf-jr {
+  margin-left: .45rem;
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #555;
+}
+
+.status-qualify {
+  color: var(--qualify);
+}
+
+.status-captain-pick,
+.status-captain-pool,
+.status-need-more {
+  color: #333;
+}
+
+.golf-note {
+  margin: 0;
+  padding: 0 2rem 3.5rem;
+  font-size: .72rem;
+  letter-spacing: .04em;
+  color: #555;
+}
+
+@media (max-width: 720px) {
+  .golf-masthead {
+    padding: 1.2rem 1.2rem 2rem;
+  }
+
+  .golf-board-wrap,
+  .golf-note {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  .golf-board th,
+  .golf-board td {
+    padding: .5rem .55rem;
+  }
 }

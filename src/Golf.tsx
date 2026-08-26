@@ -1,26 +1,75 @@
+import { qualifier } from "./golf-data";
+import {
+  computeStandings,
+  formatStatus,
+  formatToPar,
+  isUnderParRound,
+  isUnderToPar,
+} from "./golf-standings";
+
+const standings = computeStandings();
+
 export default function Golf() {
   return (
     <div className="golf-page">
       <a className="skip-link" href="#main">Skip to content</a>
-      <header className="site-header visible">
-        <a href="/" className="wordmark" aria-label="Ectropa, back to home">
-          Ectropa
-        </a>
+      <header className="golf-masthead">
+        <p className="wordmark">Ectropa</p>
+        <h1>{qualifier.event}</h1>
+        <p className="golf-dek">{qualifier.dek}</p>
+        <p className="golf-rules">
+          Best {qualifier.bestOf} of {qualifier.dates.length} · {qualifier.autoQualify} auto + {qualifier.captainPicks} captain picks · max {qualifier.maxJuniors} juniors
+        </p>
       </header>
       <main id="main">
-        <section className="narrative-section philosophy">
-          <div className="section-grid">
-            <p className="kicker">Golf</p>
-            <div>
-              <h1 className="golf-heading">Golf</h1>
-              <div className="prose">
-                <p>
-                  A quiet page, kept off the main site until there is more to say.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div className="golf-board-wrap">
+          <table className="golf-board">
+            <caption className="sr-only">
+              {qualifier.event} qualifier standings, stroke play gross, par {qualifier.par}
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" className="col-pos">Pos</th>
+                <th scope="col" className="col-player">Player</th>
+                <th scope="col" className="col-num">To par</th>
+                <th scope="col" className="col-num">Best 4</th>
+                <th scope="col" className="col-num">Played</th>
+                {qualifier.dates.map((date) => (
+                  <th scope="col" className="col-round" key={date.id}>{date.label}</th>
+                ))}
+                <th scope="col" className="col-status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {standings.map((row) => (
+                <tr key={row.player.name} className={row.cutAfter ? "cut-after" : undefined}>
+                  <td className="col-pos">{row.posLabel}</td>
+                  <td className="col-player">
+                    {row.player.name}
+                    {row.player.junior ? <abbr className="golf-jr" title="Junior">Jr</abbr> : null}
+                  </td>
+                  <td className={isUnderToPar(row.toPar) ? "col-num under" : "col-num"}>
+                    {formatToPar(row.toPar)}
+                  </td>
+                  <td className="col-num">{row.best4 ?? ""}</td>
+                  <td className="col-num">{row.played}</td>
+                  {row.player.rounds.map((score, index) => (
+                    <td
+                      key={qualifier.dates[index].id}
+                      className={isUnderParRound(score) ? "col-round under" : "col-round"}
+                    >
+                      {score ?? ""}
+                    </td>
+                  ))}
+                  <td className={`col-status status-${row.status}`}>{formatStatus(row)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="golf-note">
+          Official sheet snapshot · 15 Aug and 16 Aug 2026 · remaining four dates TBD
+        </p>
       </main>
     </div>
   );
