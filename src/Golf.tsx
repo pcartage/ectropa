@@ -12,32 +12,33 @@ const standings = computeStandings();
 export default function Golf() {
   return (
     <div className="golf-page">
-      <a className="skip-link" href="#main">Skip to content</a>
+      <a className="skip-link" href="#main">Saltar al contenido</a>
       <header className="golf-masthead">
         <p className="wordmark">Ectropa</p>
         <h1>{qualifier.event}</h1>
         <p className="golf-dek">{qualifier.dek}</p>
         <p className="golf-rules">
-          Best {qualifier.bestOf} of {qualifier.dates.length} · {qualifier.autoQualify} auto + {qualifier.captainPicks} captain picks · max {qualifier.maxJuniors} juniors
+          Mejores {qualifier.bestOf} de {qualifier.dates.length} · {qualifier.autoQualify} cupos automáticos + {qualifier.captainPicks} elecciones del capitán · máximo {qualifier.maxJuniors} juniors
         </p>
+        <p className="golf-rules">Capitán: {qualifier.captain}</p>
       </header>
       <main id="main">
         <div className="golf-board-wrap">
           <table className="golf-board">
             <caption className="sr-only">
-              {qualifier.event} qualifier standings, stroke play gross, par {qualifier.par}
+              Clasificatorio {qualifier.event}, juego por golpes bruto, par {qualifier.par}
             </caption>
             <thead>
               <tr>
                 <th scope="col" className="col-pos">Pos</th>
-                <th scope="col" className="col-player">Player</th>
-                <th scope="col" className="col-num">To par</th>
-                <th scope="col" className="col-num">Best 4</th>
-                <th scope="col" className="col-num">Played</th>
+                <th scope="col" className="col-player">Jugador</th>
+                <th scope="col" className="col-num">Al par</th>
+                <th scope="col" className="col-num">Mejores 4</th>
+                <th scope="col" className="col-num">Jugadas</th>
                 {qualifier.dates.map((date) => (
                   <th scope="col" className="col-round" key={date.id}>{date.label}</th>
                 ))}
-                <th scope="col" className="col-status">Status</th>
+                <th scope="col" className="col-status">Estado</th>
               </tr>
             </thead>
             <tbody>
@@ -46,7 +47,7 @@ export default function Golf() {
                   <td className="col-pos">{row.posLabel}</td>
                   <td className="col-player">
                     {row.player.name}
-                    {row.player.junior ? <abbr className="golf-jr" title="Junior">Jr</abbr> : null}
+                    {row.player.junior ? <abbr className="golf-jr" title="Juvenil">Juv</abbr> : null}
                   </td>
                   <td className={isUnderToPar(row.toPar) ? "col-num under" : "col-num"}>
                     {formatToPar(row.toPar)}
@@ -68,7 +69,7 @@ export default function Golf() {
           </table>
         </div>
         <p className="golf-note">
-          Official sheet snapshot · 15 Aug and 16 Aug 2026 · remaining four dates TBD
+          Planilla oficial · 15 ago y 16 ago 2026 · las cuatro fechas restantes por definir
         </p>
       </main>
     </div>

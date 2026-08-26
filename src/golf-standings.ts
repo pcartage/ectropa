@@ -150,13 +150,13 @@ export function formatToPar(value: number | null): string {
 export function formatStatus(row: Standing): string {
   switch (row.status) {
     case "qualify":
-      return "Qualify";
+      return "Clasifica";
     case "captain-pick":
-      return "Captain pick";
+      return "Elección del capitán";
     case "captain-pool":
-      return "Captain pool";
+      return "Bolsa del capitán";
     case "need-more":
-      return `Need ${row.needMore} more`;
+      return `Faltan ${row.needMore}`;
   }
 }
 

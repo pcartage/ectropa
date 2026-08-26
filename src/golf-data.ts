@@ -1,7 +1,8 @@
 export const qualifier = {
   club: "Club de Golf Corinto",
   event: "Interclubes Corinto 2027",
-  dek: "Qualifier · stroke play · gross · par 72",
+  dek: "Clasificatorio · juego por golpes · bruto · par 72",
+  captain: "Ricardo Fuzzi",
   par: 72,
   bestOf: 4,
   minRounds: 4,
@@ -10,14 +11,14 @@ export const qualifier = {
   teamSize: 8,
   maxJuniors: 2,
   dates: [
-    { id: "d1", label: "15 Aug", iso: "2026-08-15" },
-    { id: "d2", label: "16 Aug", iso: "2026-08-16" },
-    { id: "d3", label: "6 Sep", iso: "2026-09-06" },
-    { id: "d4", label: "19 Sep", iso: "2026-09-19" },
-    { id: "d5", label: "Date 5", iso: "" },
-    { id: "d6", label: "Date 6", iso: "" },
-    { id: "d7", label: "Date 7", iso: "" },
-    { id: "d8", label: "Date 8", iso: "" },
+    { id: "d1", label: "15 ago", iso: "2026-08-15" },
+    { id: "d2", label: "16 ago", iso: "2026-08-16" },
+    { id: "d3", label: "6 sep", iso: "2026-09-06" },
+    { id: "d4", label: "19 sep", iso: "2026-09-19" },
+    { id: "d5", label: "Fecha 5", iso: "" },
+    { id: "d6", label: "Fecha 6", iso: "" },
+    { id: "d7", label: "Fecha 7", iso: "" },
+    { id: "d8", label: "Fecha 8", iso: "" },
   ],
 } as const;
 
