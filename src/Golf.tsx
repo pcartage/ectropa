@@ -18,7 +18,7 @@ export default function Golf() {
         <h1>{qualifier.event}</h1>
         <p className="golf-dek">{qualifier.dek}</p>
         <p className="golf-rules">
-          Mejores {qualifier.bestOf} de {qualifier.dates.length} · {qualifier.autoQualify} cupos automáticos + {qualifier.captainPicks} elecciones del capitán · máximo {qualifier.maxJuniors} juniors
+          Mejores {qualifier.bestOf} de {qualifier.dates.length} · {qualifier.autoQualify} cupos automáticos + {qualifier.captainPicks} elecciones del capitán · máximo {qualifier.maxJuniors} juveniles
         </p>
         <p className="golf-rules">Capitán: {qualifier.captain}</p>
       </header>
