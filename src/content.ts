@@ -24,12 +24,12 @@ export const siteContent = {
         {
         number: "01",
         title: "Active commitments",
-        copy: "High-touch projects, ventures, and investments where we closely drive execution.",
+        copy: "A hands-on approach to projects, ventures, and investments where we directly shape execution.",
       },
          {
         number: "02",
         title: "Passive allocations",
-        copy: "Low-touch wealth management, including family investments and broad market holdings.",
+        copy: "A low-touch approach to private investments and broad market holdings.",
       },
     ],
   },
