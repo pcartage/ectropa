@@ -42,7 +42,7 @@ function holes16(scores: number[]): (number[] | null)[] {
 
 /** Snapshot of the official qualifier sheet after 15 and 16 Aug 2026. Dates 5–8 TBD. Names match the sheet. 15 ago is totals-only. */
 export const players: PlayerRow[] = [
-  { name: "Marco Samour", junior: false, captainPick: false, rounds: [null, 84, null, null, null, null, null, null], holes: holes16([5, 5, 3, 6, 6, 4, 4, 4, 6, 3, 7, 4, 4, 5, 5, 3, 4, 6]) },
+  { name: "Marco Samour", junior: true, captainPick: false, rounds: [null, 84, null, null, null, null, null, null], holes: holes16([5, 5, 3, 6, 6, 4, 4, 4, 6, 3, 7, 4, 4, 5, 5, 3, 4, 6]) },
   { name: "Rodrigo Sol", junior: false, captainPick: false, rounds: [null, 77, null, null, null, null, null, null], holes: holes16([5, 5, 2, 4, 4, 4, 4, 4, 6, 4, 5, 4, 5, 5, 4, 3, 4, 5]) },
   { name: "Juanfer Castellanos", junior: false, captainPick: false, rounds: [69, 73, null, null, null, null, null, null], holes: holes16([5, 3, 3, 4, 5, 4, 4, 4, 5, 4, 4, 4, 5, 4, 4, 2, 4, 5]) },
   { name: "Gabriel Sanchez", junior: false, captainPick: false, rounds: [76, 82, null, null, null, null, null, null], holes: holes16([8, 3, 3, 6, 5, 6, 5, 4, 4, 4, 4, 4, 4, 5, 4, 3, 4, 6]) },
@@ -57,8 +57,8 @@ export const players: PlayerRow[] = [
   { name: "Eduardo Alvarez", junior: false, captainPick: false, rounds: [86, 85, null, null, null, null, null, null], holes: holes16([6, 4, 5, 6, 4, 5, 4, 4, 6, 4, 5, 5, 4, 6, 5, 3, 3, 6]) },
   { name: "Jose Bruyeros", junior: false, captainPick: false, rounds: [null, 87, null, null, null, null, null, null], holes: holes16([6, 5, 4, 5, 6, 4, 4, 4, 5, 4, 6, 4, 5, 7, 4, 4, 5, 6]) },
   { name: "Peche Arguello", junior: false, captainPick: false, rounds: [null, 80, null, null, null, null, null, null], holes: holes16([7, 3, 3, 6, 5, 4, 5, 4, 3, 4, 5, 4, 5, 5, 4, 3, 5, 5]) },
-  { name: "Jordan Don", junior: false, captainPick: false, rounds: [74, 78, null, null, null, null, null, null], holes: holes16([6, 3, 3, 5, 4, 6, 4, 5, 4, 3, 4, 4, 4, 6, 3, 4, 4, 6]) },
+  { name: "Jordan Don", junior: true, captainPick: false, rounds: [74, 78, null, null, null, null, null, null], holes: holes16([6, 3, 3, 5, 4, 6, 4, 5, 4, 3, 4, 4, 4, 6, 3, 4, 4, 6]) },
   { name: "Juan Pablo Diaz", junior: false, captainPick: false, rounds: [82, 80, null, null, null, null, null, null], holes: holes16([6, 4, 4, 5, 4, 5, 4, 4, 4, 4, 4, 5, 4, 5, 6, 3, 5, 4]) },
   { name: "Carlos Guardado", junior: false, captainPick: false, rounds: [92, null, null, null, null, null, null, null], holes: emptyHoles },
-  { name: "Juan Diego Barrios", junior: false, captainPick: false, rounds: [84, null, null, null, null, null, null, null], holes: emptyHoles },
+  { name: "Juan Diego Barrios", junior: true, captainPick: false, rounds: [84, null, null, null, null, null, null, null], holes: emptyHoles },
 ];
