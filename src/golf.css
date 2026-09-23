@@ -74,6 +74,20 @@
   font-size: .95rem;
 }
 
+.golf-chip-btn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: .16em;
+  text-decoration-thickness: 1px;
+}
+
 .golf-campo {
   margin: 1.1rem 0 0;
   max-width: 42rem;
@@ -206,6 +220,7 @@
 
 .status-captain-pick,
 .status-captain-pool,
+.status-junior-cap,
 .status-need-more {
   color: #333;
 }

@@ -3,6 +3,7 @@ import { holePars, qualifier } from "./golf-data";
 import { computeGolfStats, formatCounts, type RoundCard } from "./golf-stats";
 import {
   computeStandings,
+  formatAverage,
   formatStatus,
   formatToPar,
   isUnderParRound,
@@ -132,7 +133,7 @@ export default function Golf() {
         <h1>{qualifier.event}</h1>
         <p className="golf-dek">{qualifier.dek}</p>
         <p className="golf-rules">
-          Mejores {qualifier.bestOf} de {qualifier.dates.length} · {qualifier.autoQualify} cupos automáticos + {qualifier.captainPicks} elecciones del capitán · máximo {qualifier.maxJuniors} juveniles
+          Clasificación por promedio de rondas jugadas · mejores {qualifier.bestOf} de {qualifier.dates.length} para el corte final · equipo de {qualifier.teamSize} · máximo {qualifier.maxJuniors} juveniles entre los {qualifier.teamSize} que clasifican
         </p>
         <p className="golf-rules">Capitán: {qualifier.captain}</p>
         {stats.highlights.length > 0 ? (
@@ -140,7 +141,17 @@ export default function Golf() {
             {stats.highlights.map((chip) => (
               <li className="golf-chip" key={chip.key}>
                 <span className="golf-chip-label">{chip.label}</span>
-                <span className="golf-chip-detail">{chip.detail}</span>
+                {chip.playerName ? (
+                  <button
+                    type="button"
+                    className="golf-chip-detail golf-chip-btn"
+                    onClick={() => togglePlayer(chip.playerName as string)}
+                  >
+                    {chip.detail}
+                  </button>
+                ) : (
+                  <span className="golf-chip-detail">{chip.detail}</span>
+                )}
               </li>
             ))}
           </ul>
@@ -151,12 +162,13 @@ export default function Golf() {
         <div className="golf-board-wrap">
           <table className="golf-board">
             <caption className="sr-only">
-              Clasificatorio {qualifier.event}, juego por golpes bruto, par {qualifier.par}
+              Clasificatorio {qualifier.event}, juego por golpes bruto, par {qualifier.par}, ordenado por promedio
             </caption>
             <thead>
               <tr>
                 <th scope="col" className="col-pos">Pos</th>
                 <th scope="col" className="col-player">Jugador</th>
+                <th scope="col" className="col-num">Prom</th>
                 <th scope="col" className="col-num">Al par</th>
                 <th scope="col" className="col-num">Mejores 4</th>
                 <th scope="col" className="col-num">Jugadas</th>
@@ -182,6 +194,7 @@ export default function Golf() {
                     </button>
                     {row.player.junior ? <abbr className="golf-jr" title="Juvenil">Juv</abbr> : null}
                   </td>
+                  <td className="col-num">{formatAverage(row.average)}</td>
                   <td className={isUnderToPar(row.toPar) ? "col-num under" : "col-num"}>
                     {formatToPar(row.toPar)}
                   </td>
@@ -205,7 +218,7 @@ export default function Golf() {
           <Tarjeta name={openName} cards={openCards} tab={tab} onTab={setTab} />
         ) : null}
         <p className="golf-note">
-          Planilla oficial · 15 ago y 16 ago 2026 · las cuatro fechas restantes por definir
+          Planilla oficial · 15 ago, 16 ago, 6 sep y 19 sep 2026 · las cuatro fechas restantes por definir
         </p>
       </main>
     </div>

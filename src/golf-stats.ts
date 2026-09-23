@@ -1,4 +1,5 @@
 import { holePars, players, qualifier, type PlayerRow } from "./golf-data";
+import { playedScores } from "./golf-standings";
 
 export type HoleKindCounts = {
   eagles: number;
@@ -25,7 +26,15 @@ export type PlayerHoleStats = HoleKindCounts & {
   par5VsPar: number | null;
   bestIda: number | null;
   bestVuelta: number | null;
+  avgIda: number | null;
+  avgVuelta: number | null;
   cards: RoundCard[];
+  average: number | null;
+  stdev: number | null;
+  improvement: number | null;
+  under80: number;
+  underPar: number;
+  bestHoleVsPar: number | null;
 };
 
 export type HoleAverage = {
@@ -39,6 +48,7 @@ export type HighlightChip = {
   key: string;
   label: string;
   detail: string;
+  playerName?: string;
 };
 
 export type GolfStats = {
@@ -60,14 +70,17 @@ export function classifyHoles(holes: number[]): HoleKindCounts & {
   par3: number[];
   par4: number[];
   par5: number[];
+  bestHoleVsPar: number;
 } {
   const counts = emptyCounts();
   const par3: number[] = [];
   const par4: number[] = [];
   const par5: number[] = [];
+  let bestHoleVsPar = Infinity;
   holes.forEach((score, i) => {
     const par = holePars[i];
     const diff = score - par;
+    if (diff < bestHoleVsPar) bestHoleVsPar = diff;
     if (diff <= -2) counts.eagles += 1;
     else if (diff === -1) counts.birdies += 1;
     else if (diff === 0) counts.pars += 1;
@@ -84,6 +97,7 @@ export function classifyHoles(holes: number[]): HoleKindCounts & {
     par3,
     par4,
     par5,
+    bestHoleVsPar,
   };
 }
 
@@ -108,6 +122,18 @@ export function formatCounts(counts: HoleKindCounts): string {
 function mean(values: number[]): number | null {
   if (values.length === 0) return null;
   return values.reduce((sum, n) => sum + n, 0) / values.length;
+}
+
+function stdev(values: number[]): number | null {
+  if (values.length < 2) return null;
+  const avg = mean(values) as number;
+  const variance = values.reduce((sum, n) => sum + (n - avg) ** 2, 0) / values.length;
+  return Math.sqrt(variance);
+}
+
+function formatScore(value: number): string {
+  const rounded = Math.round(value * 100) / 100;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
 }
 
 /** Unique min/max. Ties (would otherwise fall to name) are skipped. */
@@ -138,8 +164,18 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
     const par3: number[] = [];
     const par4: number[] = [];
     const par5: number[] = [];
+    const idas: number[] = [];
+    const vueltas: number[] = [];
     let bestIda: number | null = null;
     let bestVuelta: number | null = null;
+    let bestHoleVsPar: number | null = null;
+    const played = playedScores(player.rounds);
+    const average = played.length > 0 ? mean(played) : null;
+    const roundStdev = stdev(played);
+    const improvement =
+      played.length >= 2 ? played[played.length - 1] - played[0] : null;
+    const under80 = played.filter((score) => score < 80).length;
+    const underPar = played.filter((score) => score < qualifier.par).length;
 
     player.rounds.forEach((total, dateIndex) => {
       if (total == null) return;
@@ -154,8 +190,13 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
         par3.push(...classified.par3);
         par4.push(...classified.par4);
         par5.push(...classified.par5);
+        idas.push(classified.ida);
+        vueltas.push(classified.vuelta);
         if (bestIda == null || classified.ida < bestIda) bestIda = classified.ida;
         if (bestVuelta == null || classified.vuelta < bestVuelta) bestVuelta = classified.vuelta;
+        if (bestHoleVsPar == null || classified.bestHoleVsPar < bestHoleVsPar) {
+          bestHoleVsPar = classified.bestHoleVsPar;
+        }
         holes.forEach((score, i) => {
           holeSums[i] += score;
         });
@@ -196,7 +237,15 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
       par5VsPar: mean(par5),
       bestIda,
       bestVuelta,
+      avgIda: mean(idas),
+      avgVuelta: mean(vueltas),
       cards,
+      average,
+      stdev: roundStdev,
+      improvement,
+      under80,
+      underPar,
+      bestHoleVsPar,
     };
   }
 
@@ -213,6 +262,7 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
     : null;
 
   const withHoles = Object.values(byName).filter((player) => player.cards.some((card) => card.holes));
+  const withAverage = Object.values(byName).filter((player) => player.average != null);
   const lowRounds: { name: string; score: number }[] = [];
   for (const player of rows) {
     for (const score of player.rounds) {
@@ -221,9 +271,57 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
   }
 
   const low = uniqueExtreme(lowRounds, (round) => round.score, "min", (round) => round.name);
+  const bestAvg = uniqueExtreme(
+    withAverage,
+    (player) => player.average as number,
+    "min",
+    (player) => player.name,
+  );
   const mostBirdies = uniqueExtreme(withHoles, (player) => player.birdies, "max", (player) => player.name);
   const mostEagles = uniqueExtreme(withHoles, (player) => player.eagles, "max", (player) => player.name);
   const fewestDoubles = uniqueExtreme(withHoles, (player) => player.doubles, "min", (player) => player.name);
+  const mostConsistent = uniqueExtreme(
+    withAverage.filter((player) => player.stdev != null),
+    (player) => player.stdev as number,
+    "min",
+    (player) => player.name,
+  );
+  const biggestImprove = uniqueExtreme(
+    withAverage.filter((player) => player.improvement != null),
+    (player) => player.improvement as number,
+    "min",
+    (player) => player.name,
+  );
+  const bestIdaAvg = uniqueExtreme(
+    withHoles.filter((player) => player.avgIda != null),
+    (player) => player.avgIda as number,
+    "min",
+    (player) => player.name,
+  );
+  const bestVueltaAvg = uniqueExtreme(
+    withHoles.filter((player) => player.avgVuelta != null),
+    (player) => player.avgVuelta as number,
+    "min",
+    (player) => player.name,
+  );
+  const bestHoleRel = uniqueExtreme(
+    withHoles.filter((player) => player.bestHoleVsPar != null),
+    (player) => player.bestHoleVsPar as number,
+    "min",
+    (player) => player.name,
+  );
+  const mostUnder80 = uniqueExtreme(
+    withAverage.filter((player) => player.under80 > 0),
+    (player) => player.under80,
+    "max",
+    (player) => player.name,
+  );
+  const mostUnderPar = uniqueExtreme(
+    withAverage.filter((player) => player.underPar > 0),
+    (player) => player.underPar,
+    "max",
+    (player) => player.name,
+  );
   const bestPar3 = uniqueExtreme(
     withHoles.filter((player) => player.par3VsPar != null),
     (player) => player.par3VsPar as number,
@@ -245,15 +343,88 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
 
   const highlights: HighlightChip[] = [];
   const add = (chip: HighlightChip | null | undefined) => {
-    if (chip && highlights.length < 6) highlights.push(chip);
+    if (chip && highlights.length < 8) highlights.push(chip);
   };
 
-  if (low) add({ key: "low", label: "Ronda más baja", detail: `${low.name} ${low.score}` });
+  if (bestAvg && bestAvg.average != null) {
+    add({
+      key: "avg",
+      label: "Mejor promedio",
+      detail: `${bestAvg.name} ${formatScore(bestAvg.average)}`,
+      playerName: bestAvg.name,
+    });
+  }
+  if (low) {
+    add({
+      key: "low",
+      label: "Ronda más baja",
+      detail: `${low.name} ${low.score}`,
+      playerName: low.name,
+    });
+  }
   if (mostBirdies && mostBirdies.birdies > 0) {
-    add({ key: "birdies", label: "Más birdies", detail: `${mostBirdies.name} ${mostBirdies.birdies}` });
+    add({
+      key: "birdies",
+      label: "Más birdies",
+      detail: `${mostBirdies.name} ${mostBirdies.birdies}`,
+      playerName: mostBirdies.name,
+    });
   }
   if (mostEagles && mostEagles.eagles > 0) {
-    add({ key: "eagles", label: "Más eagles", detail: `${mostEagles.name} ${mostEagles.eagles}` });
+    add({
+      key: "eagles",
+      label: "Más eagles",
+      detail: `${mostEagles.name} ${mostEagles.eagles}`,
+      playerName: mostEagles.name,
+    });
+  }
+  if (bestVueltaAvg && bestVueltaAvg.avgVuelta != null) {
+    add({
+      key: "vuelta",
+      label: "Mejor vuelta",
+      detail: `${bestVueltaAvg.name} ${formatScore(bestVueltaAvg.avgVuelta)}`,
+      playerName: bestVueltaAvg.name,
+    });
+  }
+  if (bestIdaAvg && bestIdaAvg.avgIda != null) {
+    add({
+      key: "ida",
+      label: "Mejor ida",
+      detail: `${bestIdaAvg.name} ${formatScore(bestIdaAvg.avgIda)}`,
+      playerName: bestIdaAvg.name,
+    });
+  }
+  if (mostConsistent && mostConsistent.stdev != null) {
+    add({
+      key: "consist",
+      label: "Más constante",
+      detail: `${mostConsistent.name} σ ${formatScore(mostConsistent.stdev)}`,
+      playerName: mostConsistent.name,
+    });
+  }
+  if (biggestImprove && biggestImprove.improvement != null && biggestImprove.improvement < 0) {
+    add({
+      key: "improve",
+      label: "Mayor mejora",
+      detail: `${biggestImprove.name} ${formatAvgVsPar(biggestImprove.improvement)}`,
+      playerName: biggestImprove.name,
+    });
+  }
+  if (mostUnder80 && mostUnder80.under80 > 0) {
+    add({
+      key: "u80",
+      label: "Más rondas <80",
+      detail: `${mostUnder80.name} ${mostUnder80.under80}`,
+      playerName: mostUnder80.name,
+    });
+  }
+  if (mostUnderPar && mostUnderPar.underPar > 0) {
+    add({
+      key: "upar",
+      label: "Más bajo par",
+      detail: `${mostUnderPar.name} ${mostUnderPar.underPar}`,
+      playerName: mostUnderPar.name,
+    });
   }
   if (hardest) {
     add({
@@ -269,11 +440,20 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
       detail: `Hoyo ${easiest.hole} (${formatAvgVsPar(easiest.vsPar)})`,
     });
   }
+  if (bestHoleRel && bestHoleRel.bestHoleVsPar != null && bestHoleRel.bestHoleVsPar < 0) {
+    add({
+      key: "hole",
+      label: "Mejor hoyo",
+      detail: `${bestHoleRel.name} ${formatAvgVsPar(bestHoleRel.bestHoleVsPar)}`,
+      playerName: bestHoleRel.name,
+    });
+  }
   if (bestPar3 && bestPar3.par3VsPar != null) {
     add({
       key: "par3",
       label: "Mejor par 3",
       detail: `${bestPar3.name} ${formatAvgVsPar(bestPar3.par3VsPar)}`,
+      playerName: bestPar3.name,
     });
   }
   if (bestPar4 && bestPar4.par4VsPar != null) {
@@ -281,6 +461,7 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
       key: "par4",
       label: "Mejor par 4",
       detail: `${bestPar4.name} ${formatAvgVsPar(bestPar4.par4VsPar)}`,
+      playerName: bestPar4.name,
     });
   }
   if (bestPar5 && bestPar5.par5VsPar != null) {
@@ -288,6 +469,7 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
       key: "par5",
       label: "Mejor par 5",
       detail: `${bestPar5.name} ${formatAvgVsPar(bestPar5.par5VsPar)}`,
+      playerName: bestPar5.name,
     });
   }
   if (fewestDoubles) {
@@ -295,6 +477,7 @@ export function computeGolfStats(rows: PlayerRow[] = players): GolfStats {
       key: "doubles",
       label: "Menos dobles",
       detail: `${fewestDoubles.name} ${fewestDoubles.doubles}`,
+      playerName: fewestDoubles.name,
     });
   }
 
